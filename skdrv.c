@@ -6,7 +6,7 @@
 #define DRIVER_DESC "Kernel programming excercise driver"
 
 static int __init init(void) {
-	printk(KERN_INFO "Hello World!");
+	printk(KERN_DEBUG "Hello World!");
 	return 0;
 }
 
