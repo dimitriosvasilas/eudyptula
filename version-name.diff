@@ -6,7 +6,7 @@ diff -uNr linux.vanilla/Makefile linux/Makefile
  PATCHLEVEL = 11
  SUBLEVEL = 0
 -EXTRAVERSION = -rc3
-+EXTRAVERSION = -rc3-eudyptula
++EXTRAVERSION = -rc3-vasilas
  NAME = Fearless Coyote
  
  # *DOCUMENTATION*
