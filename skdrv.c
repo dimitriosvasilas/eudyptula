@@ -5,12 +5,14 @@
 #define DRIVER_AUTHOR "Dimitrios Vasilas <dimitrios.vasilas@scality.com>"
 #define DRIVER_DESC "Kernel programming excercise driver"
 
-static int __init init(void) {
-	printk(KERN_DEBUG "Hello World!");
+static int __init init(void)
+{
+	pr_debug("Hello World!");
 	return 0;
 }
 
-static void __exit fini(void) {
+static void __exit fini(void)
+{
 	
 }
 
