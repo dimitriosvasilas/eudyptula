@@ -14,13 +14,13 @@ if grep -q "vmx" /proc/cpuinfo ; then
 		sudo modprobe -r kvm_intel
 		sudo modprobe -r kvm
 		sudo modprobe kvm_intel
-		
-		wget http://download.qemu-project.org/qemu-2.8.0.tar.xz
-		tar xvJf qemu-2.8.0.tar.xz
-		cd qemu-2.8.0
-		./configure --enable-kvm
+
+		cd ${HOME}		
+		wget http://download.qemu-project.org/qemu-${QEMU_VERS}.tar.xz
+		tar xvJf qemu-${QEMU_VERS}.tar.xz
+		cd qemu-${QEMU_VERS}
+		./configure --enable-kvm --disable-rdma --target-list=x86_64-softmmu
 		make
-		sudo make install 
-	fi
-	
+		sudo make install
+	fi	
 fi
