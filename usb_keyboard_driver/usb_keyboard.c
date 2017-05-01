@@ -11,7 +11,7 @@ static struct usb_device_id usbk_table[] = {
 	{ }
 };
 
-static int __init init(void)
+static int __init usbk_init(void)
 {
 	pr_debug("Hello World!\n");
 	return 0;
@@ -23,7 +23,7 @@ static void __exit usbk_exit(void)
 }
 
 MODULE_DEVICE_TABLE(usb, usbk_table);
-module_init(init);
+module_init(usbk_init);
 module_exit(usbk_exit);
 
 MODULE_LICENSE("GPL");
