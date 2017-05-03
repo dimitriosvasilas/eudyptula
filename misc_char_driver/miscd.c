@@ -41,9 +41,15 @@ static void __exit miscd_exit(void)
 
 ssize_t miscd_read(struct file *fp, char __user *user, size_t size,
                         loff_t *offs)
-{		
-	return simple_read_from_buffer(user, size, offs, UID,
+{	
+	int ret = -1;
+	ret = simple_read_from_buffer(user, size, offs, UID,
 				strlen(UID));
+	if (ret < -1) {
+		return -EACCES;
+	}
+
+	return ret;
 }
 ssize_t miscd_write(struct file *fp, const char __user *user, size_t size,
                         loff_t *offs)
@@ -54,12 +60,18 @@ ssize_t miscd_write(struct file *fp, const char __user *user, size_t size,
 	if (size != BUFFER_SIZE)
 		return -EINVAL;
 	
-	simple_write_to_buffer(buff, BUFFER_SIZE-1,
+	ret = simple_write_to_buffer(buff, BUFFER_SIZE-1,
 			offs, user, size);
+
+	if (ret < -1) {
+		return -EACCES;
+	}
+
 	buff[BUFFER_SIZE - 1] = '\0';
 
-	if ((*offs) != strlen(UID))
+	if ((*offs) != strlen(UID)) {
 		return -EINVAL;
+	}
 
 	ret  = strncmp(buff, UID, strlen(UID)) ? -EINVAL : 0;
 	return ret;
