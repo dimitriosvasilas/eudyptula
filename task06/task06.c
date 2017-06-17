@@ -6,7 +6,9 @@
 #include <linux/errno.h>
 #include <linux/uaccess.h>
 
-#define DEVICE_NAME "miscd"
+#define DRIVER_AUTHOR "Dimitrios Vasilas <dimitrios.vasilas@scality.com>"
+#define DRIVER_DESC "Eudyptula task06"
+#define DEVICE_NAME "eudyptula"
 #define UID "afa9c09dcaae"
 #define BUFFER_SIZE 13
 
@@ -70,3 +72,5 @@ ssize_t miscd_write(struct file *fp, const char __user *user, size_t size,
 module_init(miscd_init);
 module_exit(miscd_exit);
 MODULE_LICENSE("GPL");
+MODULE_AUTHOR(DRIVER_AUTHOR);
+MODULE_DESCRIPTION(DRIVER_DESC);
