@@ -1,4 +1,4 @@
-his is Task 03 of the Eudyptula Challenge
+This is Task 03 of the Eudyptula Challenge
 ------------------------------------------
 
 Now that you have your custom kernel up and running, it's time to modify
