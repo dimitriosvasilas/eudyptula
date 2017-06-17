@@ -4,6 +4,9 @@
 #include <linux/usb/input.h>
 #include <linux/hid.h>
 
+#define DRIVER_AUTHOR "Dimitrios Vasilas <dimitrios.vasilas@scality.com>"
+#define DRIVER_DESC "Eudyptula task05"
+
 static struct usb_device_id usbk_table[] = {
 	{ USB_INTERFACE_INFO(USB_INTERFACE_CLASS_HID,
 		USB_INTERFACE_SUBCLASS_BOOT,
@@ -27,3 +30,5 @@ module_init(usbk_init);
 module_exit(usbk_exit);
 
 MODULE_LICENSE("GPL");
+MODULE_AUTHOR(DRIVER_AUTHOR);
+MODULE_DESCRIPTION(DRIVER_DESC);
