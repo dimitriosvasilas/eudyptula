@@ -9,6 +9,7 @@
 #define DRIVER_AUTHOR "Dimitrios Vasilas <dimitrios.vasilas@scality.com>"
 #define DRIVER_DESC "Eudyptula task06"
 #define DEVICE_NAME "eudyptula"
+
 #define UID "afa9c09dcaae"
 #define BUFFER_SIZE 13
 
@@ -57,16 +58,15 @@ ssize_t miscd_read(struct file *fp, char __user *user, size_t size,
 ssize_t miscd_write(struct file *fp, const char __user *user, size_t size,
 			loff_t *offs)
 {
+	char *str = UID;
 	char buff[BUFFER_SIZE];
-	int ret;
 
-	if (copy_from_user(buff, user, BUFFER_SIZE-1))
+	if (size != BUFFER_SIZE ||
+		copy_from_user(buff, user, BUFFER_SIZE-1) ||
+		strncmp(buff, str, BUFFER_SIZE - 1))
 		return -EINVAL;
 
-	buff[BUFFER_SIZE - 1] = '\0';
-	
-	ret  = strncmp(buff, UID, BUFFER_SIZE) ? -EINVAL : 0;
-	return ret;
+	return size;
 }
 
 module_init(miscd_init);
