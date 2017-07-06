@@ -31,7 +31,7 @@ static ssize_t foo_store(struct kobject *kobj, struct kobj_attribute *attr,
 {
 	if (count > PAGE_SIZE)
 		return -EINVAL;
-	
+
 	down(&fsem);
 	strncpy(fdata, buf, count);
 	flen = count;
@@ -41,7 +41,7 @@ static ssize_t foo_store(struct kobject *kobj, struct kobj_attribute *attr,
 }
 
 static struct kobj_attribute foo_attribute =
-	__ATTR(foo, 0664, foo_show, foo_store);
+	__ATTR_RW(foo);
 
 static ssize_t id_show(struct kobject *kobj, struct kobj_attribute *attr,
 		      char *buf)
@@ -69,20 +69,14 @@ static ssize_t id_store(struct kobject *kobj, struct kobj_attribute *attr,
 static struct kobj_attribute id_attribute =
 	__ATTR(id, 0664, id_show, id_store);
 
-static ssize_t jiffies_show(struct kobject *kobj, struct kobj_attribute *attr,
-                      char *buf)
+static ssize_t jiffies_show(struct kobject *kobj,
+		struct kobj_attribute *attr, char *buf)
 {
 	return sprintf(buf, "%lu\n", jiffies);
 }
 
-static ssize_t jiffies_store(struct kobject *kobj, struct kobj_attribute *attr,
-                       const char *buf, size_t count)
-{
-	return -EINVAL;
-}
-
 static struct kobj_attribute jiffies_attribute =
-	__ATTR(jiffies, 0664, jiffies_show, jiffies_store);
+	__ATTR_RO(jiffies);
 
 
 static struct attribute *attrs[] = {
